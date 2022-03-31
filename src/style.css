@@ -1,0 +1,60 @@
+body {
+  color: #444f5a;
+  font-family: "Oxygen", sans-serif;
+  font-size: 18px;
+}
+h1 {
+  color: #2994b2;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+ul {
+  list-style: none;
+}
+.weather-info {
+  background-color: #ffe180;
+  border: solid 1px #444f5a;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 25px;
+  max-width: 80%;
+  padding: 15px;
+}
+#input-location {
+  max-width: 250px;
+  margin-bottom: 5px;
+}
+.current-temp {
+  font-size: 32px;
+  position: relative;
+  top: 10px;
+  left: 25px;
+}
+.current-details {
+  float: right;
+}
+.five-day-forecast {
+  text-align: center;
+  line-height: 32px;
+}
+.low {
+  opacity: 80%;
+}
+#celsius-scale,
+#farenheit-scale {
+  background-color: #ffe180;
+  border-color: #ffe180;
+}
+#celsius-scale:hover,
+#farenheit-scale:hover {
+  background-color: #fffbe0;
+  border-color: #fffbe0;
+}
+#current-location-btn {
+  background-color: #2994b2;
+  border-color: #2994b2;
+  max-width: 160px;
+}
+#current-description {
+  text-transform: capitalize;
+}
