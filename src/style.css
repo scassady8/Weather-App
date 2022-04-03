@@ -11,6 +11,11 @@ h1 {
 ul {
   list-style: none;
 }
+p {
+  font-size: 14px;
+  margin: auto;
+  max-width: 80%;
+}
 .weather-info {
   background-color: #ffe180;
   border: solid 1px #444f5a;

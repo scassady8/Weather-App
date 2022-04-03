@@ -25,116 +25,124 @@
     ></script>
   </head>
   <body>
-    <div class="container weather-info">
-      <form id="inputs-form">
-        <div class="row search-inputs">
-          <div class="col-10">
-            <input
-              type="search"
-              id="input-location"
-              class="form-control float-end"
-              placeholder="Enter location"
-            />
-          </div>
-          <div class="col-2">
-            <input
-              type="button"
-              id="current-location-btn"
-              class="btn btn-primary form-control float-end shadow-sm"
-              value="Current location"
-            />
-          </div>
+    <div class="container">
+      <div class="weather-info">
+        <form id="inputs-form">
+          <div class="row search-inputs">
+            <div class="col-10">
+              <input
+                type="search"
+                id="input-location"
+                class="form-control float-end"
+                placeholder="Enter location"
+              />
+            </div>
+            <div class="col-2">
+              <input
+                type="button"
+                id="current-location-btn"
+                class="btn btn-primary form-control float-end shadow-sm"
+                value="Current location"
+              />
+            </div>
 
-          <div class="col-12">
-            <span class="float-end">
-              <input
-                type="submit"
-                id="celsius-scale"
-                class="btn btn-light"
-                value="°C"
-              />
-              |
-              <input
-                type="submit"
-                id="farenheit-scale"
-                class="btn btn-light"
-                value="°F"
-              />
-            </span>
+            <div class="col-12">
+              <span class="float-end">
+                <input
+                  type="submit"
+                  id="celsius-scale"
+                  class="btn btn-light"
+                  value="°C"
+                />
+                |
+                <input
+                  type="submit"
+                  id="farenheit-scale"
+                  class="btn btn-light"
+                  value="°F"
+                />
+              </span>
+            </div>
+          </div>
+        </form>
+        <div class="current-weather">
+          <h1></h1>
+          <div class="row">
+            <div class="col-12"><h4 id="current-date"></h4></div>
+            <div class="col-12">
+              <h4 id="current-description"></h4>
+            </div>
+
+            <div class="col-6 current-temp">
+              <i class="fa-solid fa-cloud-rain"></i>
+              <span id="current-temperature">° C</span>
+            </div>
+            <div class="col-3 current-details">
+              <ul>
+                <li>Feels like: <span id="feels-like">° C</span></li>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind-speed"></span> km/h</li>
+              </ul>
+            </div>
+            <div class="col-3 current-details">
+              <ul>
+                <li>Sunrise: <span id="sunrise"></span></li>
+                <li>Sunset: <span id="sunset"></span></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </form>
-      <div class="current-weather">
-        <h1></h1>
-        <div class="row">
-          <div class="col-12"><h4 id="current-date"></h4></div>
-          <div class="col-12">
-            <h4 id="current-description"></h4>
-          </div>
-
-          <div class="col-6 current-temp">
-            <i class="fa-solid fa-cloud-rain"></i>
-            <span id="current-temperature">° C</span>
-          </div>
-          <div class="col-3 current-details">
-            <ul>
-              <li>Feels like: <span id="feels-like">° C</span></li>
-              <li>Humidity: <span id="humidity"></span>%</li>
-              <li>Wind: <span id="wind-speed"></span> km/h</li>
-            </ul>
-          </div>
-          <div class="col-3 current-details">
-            <ul>
-              <li>Sunrise: <span id="sunrise"></span></li>
-              <li>Sunset: <span id="sunset"></span></li>
-            </ul>
+        <div class="five-day-forecast">
+          <div class="row">
+            <div class="col">
+              <span id="day-1">Mon</span>
+              <br />
+              <i class="fa-solid fa-cloud-rain"></i>
+              <br />
+              <span id="day-1-high">7</span>°
+              <span class="low" id="day-1-low">1</span>°
+            </div>
+            <div class="col">
+              <span id="day-2">Tues</span>
+              <br />
+              <i class="fa-solid fa-cloud-rain"></i>
+              <br />
+              <span id="day-2-high">7</span>°
+              <span class="low" id="day-2-low">2</span>°
+            </div>
+            <div class="col">
+              <span id="day-3">Wed</span>
+              <br />
+              <i class="fa-solid fa-cloud-sun"></i>
+              <br />
+              <span id="day-3-high">6</span>°
+              <span class="low" id="day-3-low">2</span>°
+            </div>
+            <div class="col">
+              <span id="day-4">Thurs</span>
+              <br />
+              <i class="fa-solid fa-cloud"></i>
+              <br />
+              <span id="day-4-high">6</span>°
+              <span class="low" id="day-4-low">0</span>°
+            </div>
+            <div class="col">
+              <span id="day-5">Fri</span>
+              <br />
+              <i class="fa-solid fa-snowflake"></i>
+              <br />
+              <span id="day-5-high">3</span>°
+              <span class="low" id="day-5-low">-2</span>°
+            </div>
           </div>
         </div>
       </div>
-      <div class="five-day-forecast">
-        <div class="row">
-          <div class="col">
-            <span id="day-1">Mon</span>
-            <br />
-            <i class="fa-solid fa-cloud-rain"></i>
-            <br />
-            <span id="day-1-high">7</span>°
-            <span class="low" id="day-1-low">1</span>°
-          </div>
-          <div class="col">
-            <span id="day-2">Tues</span>
-            <br />
-            <i class="fa-solid fa-cloud-rain"></i>
-            <br />
-            <span id="day-2-high">7</span>°
-            <span class="low" id="day-2-low">2</span>°
-          </div>
-          <div class="col">
-            <span id="day-3">Wed</span>
-            <br />
-            <i class="fa-solid fa-cloud-sun"></i>
-            <br />
-            <span id="day-3-high">6</span>°
-            <span class="low" id="day-3-low">2</span>°
-          </div>
-          <div class="col">
-            <span id="day-4">Thurs</span>
-            <br />
-            <i class="fa-solid fa-cloud"></i>
-            <br />
-            <span id="day-4-high">6</span>°
-            <span class="low" id="day-4-low">0</span>°
-          </div>
-          <div class="col">
-            <span id="day-5">Fri</span>
-            <br />
-            <i class="fa-solid fa-snowflake"></i>
-            <br />
-            <span id="day-5-high">3</span>°
-            <span class="low" id="day-5-low">-2</span>°
-          </div>
-        </div>
-      </div>
+      <p class="source-code">
+        <a href="https://github.com/scassady8/Weather-App" target="_blank"
+          >Open source code</a
+        >
+        by Shannon Cassady
+      </p>
     </div>
     <script src="src/index.js"></script>
   </body>
