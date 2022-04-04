@@ -2,6 +2,7 @@ body {
   color: #444f5a;
   font-family: "Oxygen", sans-serif;
   font-size: 18px;
+  background-color: #ffe180;
 }
 h1 {
   color: #2994b2;
@@ -15,19 +16,17 @@ p {
   font-size: 14px;
   margin: auto;
   max-width: 80%;
+  line-height: 32px;
 }
 .weather-info {
-  background-color: #ffe180;
-  border: solid 1px #444f5a;
+  background-color: #ffffff;
+  border: none;
   border-radius: 10px;
+  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4);
   margin: auto;
   margin-top: 25px;
   max-width: 80%;
   padding: 15px;
-}
-#input-location {
-  max-width: 250px;
-  margin-bottom: 5px;
 }
 .current-temp {
   font-size: 32px;
@@ -45,21 +44,25 @@ p {
 .low {
   opacity: 80%;
 }
-#celsius-scale,
-#farenheit-scale {
-  background-color: #ffe180;
-  border-color: #ffe180;
+#current-description {
+  text-transform: capitalize;
 }
-#celsius-scale:hover,
-#farenheit-scale:hover {
-  background-color: #fffbe0;
-  border-color: #fffbe0;
+#input-location {
+  max-width: 250px;
+  margin-bottom: 5px;
 }
 #current-location-btn {
   background-color: #2994b2;
   border-color: #2994b2;
   max-width: 160px;
 }
-#current-description {
-  text-transform: capitalize;
+#celsius-scale,
+#farenheit-scale {
+  background-color: #fff;
+  border-color: #fff;
+}
+#celsius-scale:hover,
+#farenheit-scale:hover {
+  background-color: #fffbe0;
+  border-color: #fffbe0;
 }
