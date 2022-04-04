@@ -55,6 +55,7 @@ function formatSunsetTime(date) {
 function showCurrentForecast(response) {
   console.log(response.data);
   let country = response.data.sys.country;
+  let icon = document.querySelector("#current-weather-icon");
   let temperature = Math.round(response.data.main.temp);
   let feelsLikeTemp = Math.round(response.data.main.feels_like);
   let sunriseUTC = new Date(response.data.sys.sunrise * 1000);
@@ -76,6 +77,11 @@ function showCurrentForecast(response) {
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
   sunrise.innerHTML = formatSunriseTime(sunriseUTC);
   sunset.innerHTML = formatSunsetTime(sunsetUTC);
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  icon.setAttribute("alt", `${response.data.weather[0].description}`);
 }
 
 //Load default city
