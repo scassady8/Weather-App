@@ -1,4 +1,4 @@
-//Update current date and time
+//Function to format the current date and time
 function formatDate(date) {
   let days = [
     "Sunday",
@@ -21,11 +21,7 @@ function formatDate(date) {
   return `${day} ${hour}:${minutes}`;
 }
 
-let now = new Date();
-let currentDate = document.querySelector("#current-date");
-currentDate.innerHTML = formatDate(now);
-
-//Formatting for sunrise time
+//Function to format the sunrise time
 function formatSunriseTime(date) {
   let sunrisehour = date.getHours();
   if (sunrisehour < 10) {
@@ -38,7 +34,7 @@ function formatSunriseTime(date) {
   return `${sunrisehour}:${sunriseminutes}`;
 }
 
-//Formatting for sunset time
+//Function to format the sunset time
 function formatSunsetTime(date) {
   let sunsethour = date.getHours();
   if (sunsethour < 10) {
@@ -51,9 +47,8 @@ function formatSunsetTime(date) {
   return `${sunsethour}:${sunsetminutes}`;
 }
 
-//Show current forecast for searched location
+//Function to show current forecast for searched location
 function showCurrentForecast(response) {
-  console.log(response.data);
   let country = response.data.sys.country;
   let icon = document.querySelector("#current-weather-icon");
   let temperature = Math.round(response.data.main.temp);
@@ -69,6 +64,8 @@ function showCurrentForecast(response) {
   let windSpeed = document.querySelector("#wind-speed");
   let sunrise = document.querySelector("#sunrise");
   let sunset = document.querySelector("#sunset");
+  celsiusTemperature = response.data.main.temp;
+  celsiusFeelsLikeTemperature = response.data.main.feels_like;
   location.innerHTML = `${city}, ${country}`;
   currentDescription.innerHTML = response.data.weather[0].description;
   currentTemp.innerHTML = `${temperature}° C`;
@@ -84,7 +81,7 @@ function showCurrentForecast(response) {
   icon.setAttribute("alt", `${response.data.weather[0].description}`);
 }
 
-//Load default city
+//Function to load default city
 function search(city) {
   let apiKey = "c6d74f51206d84d8baa8c0c74cb8a21c";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -95,15 +92,8 @@ function search(city) {
 function submitLocation(event) {
   event.preventDefault();
   let city = document.querySelector("#input-location").value;
-  //let apiKey = "c6d74f51206d84d8baa8c0c74cb8a21c";
-  //let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  //axios.get(apiUrl).then(showCurrentForecast);
   search(city);
 }
-let inputForm = document.querySelector("#inputs-form");
-inputForm.addEventListener("submit", submitLocation);
-
-search("Trondheim");
 
 //Get weather for current location
 function captureLocation(position) {
@@ -121,21 +111,44 @@ function submitCurrentLocation() {
   navigator.geolocation.getCurrentPosition(captureLocation);
 }
 
-let currentLocationButton = document.querySelector("#current-location-btn");
-currentLocationButton.addEventListener("click", submitCurrentLocation);
-
 //Convert temperature to C and F
 function showCelsius() {
   let currentTemperature = document.querySelector("#current-temperature");
-  currentTemperature.innerHTML = `5° C`;
+  let feelsLike = document.querySelector("#feels-like");
+  let celsiusRoundedTemp = Math.round(celsiusTemperature);
+  let celsiusRoundedFeelsLikeTemp = Math.round(celsiusFeelsLikeTemperature);
+  currentTemperature.innerHTML = `${celsiusRoundedTemp}° C`;
+  feelsLike.innerHTML = `${celsiusRoundedFeelsLikeTemp}° C`;
 }
 
 function showFarenheit() {
   let currentTemperature = document.querySelector("#current-temperature");
-  currentTemperature.innerHTML = `41° F`;
+  let feelsLike = document.querySelector("#feels-like");
+  let farenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  let farenheitFeelsLikeTemperature = Math.round(
+    (celsiusFeelsLikeTemperature * 9) / 5 + 32
+  );
+  currentTemperature.innerHTML = `${farenheitTemperature}° F`;
+  feelsLike.innerHTML = `${farenheitFeelsLikeTemperature} ° F`;
 }
+
+let celsiusTemperature = null;
+let celsiusFeelsLikeTemperature = null;
+
+let now = new Date();
+let currentDate = document.querySelector("#current-date");
+currentDate.innerHTML = formatDate(now);
+
+let inputForm = document.querySelector("#inputs-form");
+inputForm.addEventListener("submit", submitLocation);
+
+let currentLocationButton = document.querySelector("#current-location-btn");
+currentLocationButton.addEventListener("click", submitCurrentLocation);
+
 let celsiusButton = document.querySelector("#celsius-scale");
 celsiusButton.addEventListener("click", showCelsius);
 
 let farenheitButton = document.querySelector("#farenheit-scale");
 farenheitButton.addEventListener("click", showFarenheit);
+
+search("Trondheim");
