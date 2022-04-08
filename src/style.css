@@ -28,6 +28,10 @@ p {
   max-width: 80%;
   padding: 15px;
 }
+.active {
+  color: #444f5a;
+  text-decoration: none;
+}
 .current-temp {
   font-size: 32px;
   position: relative;
@@ -58,11 +62,9 @@ p {
 }
 #celsius-scale,
 #farenheit-scale {
-  background-color: #fff;
-  border-color: #fff;
+  text-decoration: none;
 }
 #celsius-scale:hover,
 #farenheit-scale:hover {
-  background-color: #fffbe0;
-  border-color: #fffbe0;
+  cursor: pointer;
 }

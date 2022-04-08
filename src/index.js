@@ -112,7 +112,10 @@ function submitCurrentLocation() {
 }
 
 //Convert temperature to C and F
-function showCelsius() {
+function showCelsius(event) {
+  event.preventDefault();
+  celsiusButton.classList.add("active");
+  farenheitButton.classList.remove("active");
   let currentTemperature = document.querySelector("#current-temperature");
   let feelsLike = document.querySelector("#feels-like");
   let celsiusRoundedTemp = Math.round(celsiusTemperature);
@@ -121,7 +124,10 @@ function showCelsius() {
   feelsLike.innerHTML = `${celsiusRoundedFeelsLikeTemp}° C`;
 }
 
-function showFarenheit() {
+function showFarenheit(event) {
+  event.preventDefault();
+  celsiusButton.classList.remove("active");
+  farenheitButton.classList.add("active");
   let currentTemperature = document.querySelector("#current-temperature");
   let feelsLike = document.querySelector("#feels-like");
   let farenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
