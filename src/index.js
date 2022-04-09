@@ -47,7 +47,29 @@ function formatSunsetTime(date) {
   return `${sunsethour}:${sunsetminutes}`;
 }
 
-//Function to show current forecast for searched location
+//Function to display the forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = ` <div class="row">`;
+  let days = ["Mon", "Tues", "Wed", "Thurs", "Fri"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
+              <div id="day">${day}</div>
+              <img src="http://openweathermap.org/img/wn/10d@2x.png" alt=""/>
+              <div class="forecast-temperature">
+                <span id="day-high">7°</span>
+                <span class="low" id="day-low">1°</span>
+              </div>
+            </div>
+    `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+//Function to show current weather for searched location
 function showCurrentForecast(response) {
   let country = response.data.sys.country;
   let icon = document.querySelector("#current-weather-icon");
@@ -158,3 +180,4 @@ let farenheitButton = document.querySelector("#farenheit-scale");
 farenheitButton.addEventListener("click", showFarenheit);
 
 search("Trondheim");
+displayForecast();
