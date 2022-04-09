@@ -69,6 +69,13 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "c6d74f51206d84d8baa8c0c74cb8a21c";
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
+}
+
 //Function to show current weather for searched location
 function showCurrentForecast(response) {
   let country = response.data.sys.country;
@@ -101,6 +108,7 @@ function showCurrentForecast(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   icon.setAttribute("alt", `${response.data.weather[0].description}`);
+  getForecast(response.data.coord);
 }
 
 //Function to load default city
