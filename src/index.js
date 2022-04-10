@@ -69,10 +69,10 @@ function displayForecast(response, index) {
                 forecastDay.weather[0].icon
               }@2x.png" alt=""/>
               <div class="forecast-temperature">
-                <span id="day-high">${Math.round(forecastDay.temp.max)}°</span>
+                <span id="day-high">${Math.round(forecastDay.temp.max)}</span>°
                 <span class="low" id="day-low">${Math.round(
                   forecastDay.temp.min
-                )}°</span>
+                )}</span>°
               </div>
             </div>
     `;
@@ -141,6 +141,8 @@ function submitLocation(event) {
 function captureLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
+  let inputLocation = document.querySelector("#input-location");
+  inputLocation.value = null;
   let apiKey = "c6d74f51206d84d8baa8c0c74cb8a21c";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showCurrentForecast);
@@ -161,6 +163,16 @@ function showCelsius(event) {
   let celsiusRoundedFeelsLikeTemp = Math.round(celsiusFeelsLikeTemperature);
   currentTemperature.innerHTML = `${celsiusRoundedTemp}° C`;
   feelsLike.innerHTML = `${celsiusRoundedFeelsLikeTemp}° C`;
+  let forecastHigh = document.querySelectorAll("#day-high");
+  forecastHigh.forEach(function (item) {
+    let currentHigh = item.innerHTML;
+    item.innerHTML = Math.round(((currentHigh - 32) * 5) / 9);
+  });
+  let forecastLow = document.querySelectorAll("#day-low");
+  forecastLow.forEach(function (item) {
+    let currentLow = item.innerHTML;
+    item.innerHTML = Math.round(((currentLow - 32) * 5) / 9);
+  });
 }
 
 function showFarenheit(event) {
@@ -175,6 +187,16 @@ function showFarenheit(event) {
   );
   currentTemperature.innerHTML = `${farenheitTemperature}° F`;
   feelsLike.innerHTML = `${farenheitFeelsLikeTemperature} ° F`;
+  let forecastHigh = document.querySelectorAll("#day-high");
+  forecastHigh.forEach(function (item) {
+    let currentHigh = item.innerHTML;
+    item.innerHTML = Math.round((currentHigh * 9) / 5 + 32);
+  });
+  let forecastLow = document.querySelectorAll("#day-low");
+  forecastLow.forEach(function (item) {
+    let currentLow = item.innerHTML;
+    item.innerHTML = Math.round((currentLow * 9) / 5 + 32);
+  });
 }
 
 let celsiusTemperature = null;
