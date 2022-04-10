@@ -35,6 +35,9 @@ p {
   color: #444f5a;
   text-decoration: none;
 }
+.current-weather {
+  padding: 15px;
+}
 .current-temp {
   font-size: 32px;
   position: relative;
