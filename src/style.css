@@ -2,10 +2,13 @@ body {
   color: #444f5a;
   font-family: "Oxygen", sans-serif;
   font-size: 18px;
-  background-color: #ffe180;
+  background-color: rgba(252, 227, 138, 0.7);
+}
+h1,
+a {
+  color: #2994b2;
 }
 h1 {
-  color: #2994b2;
   font-weight: 700;
   text-transform: capitalize;
 }
@@ -22,7 +25,7 @@ p {
   background-color: #ffffff;
   border: none;
   border-radius: 10px;
-  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 5px 3px rgba(68, 79, 90, 0.4);
   margin: auto;
   margin-top: 25px;
   max-width: 80%;
