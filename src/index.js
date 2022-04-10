@@ -1,5 +1,5 @@
 //Function to format the current date and time
-function formatDate(date) {
+function formatCurrentDate(date) {
   let days = [
     "Sunday",
     "Monday",
@@ -29,7 +29,7 @@ function formatSunriseTime(date) {
   }
   let sunriseminutes = date.getMinutes();
   if (sunriseminutes < 10) {
-    sunriseminutes = `0${minutes}`;
+    sunriseminutes = `0${sunriseminutes}`;
   }
   return `${sunrisehour}:${sunriseminutes}`;
 }
@@ -47,23 +47,37 @@ function formatSunsetTime(date) {
   return `${sunsethour}:${sunsetminutes}`;
 }
 
+function formatDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+  return `${day}`;
+}
+
 //Function to display the forecast
-function displayForecast() {
+function displayForecast(response, index) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = ` <div class="row">`;
-  let days = ["Mon", "Tues", "Wed", "Thurs", "Fri"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col">
-              <div id="day">${day}</div>
-              <img src="http://openweathermap.org/img/wn/10d@2x.png" alt=""/>
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col">
+              <div id="day">${formatDate(forecastDay.dt)}</div>
+              <img src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png" alt=""/>
               <div class="forecast-temperature">
-                <span id="day-high">7°</span>
-                <span class="low" id="day-low">1°</span>
+                <span id="day-high">${Math.round(forecastDay.temp.max)}°</span>
+                <span class="low" id="day-low">${Math.round(
+                  forecastDay.temp.min
+                )}°</span>
               </div>
             </div>
     `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -173,7 +187,7 @@ let celsiusFeelsLikeTemperature = null;
 
 let now = new Date();
 let currentDate = document.querySelector("#current-date");
-currentDate.innerHTML = formatDate(now);
+currentDate.innerHTML = formatCurrentDate(now);
 
 let inputForm = document.querySelector("#inputs-form");
 inputForm.addEventListener("submit", submitLocation);
@@ -188,4 +202,3 @@ let farenheitButton = document.querySelector("#farenheit-scale");
 farenheitButton.addEventListener("click", showFarenheit);
 
 search("Trondheim");
-displayForecast();
